@@ -4,7 +4,6 @@ import uuid
 import json
 
 from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import redirect
 
 
@@ -75,8 +74,8 @@ def recruitment_con(request):
 
         url = 'https://recruitment.fisdev.com/api/file-object/' + file_token_id + '/'
 
-        response2 = requests.put(url, data=file, headers={'Content-type': 'multipart/form-data; '
-                                                                          'boundary=something ',
-                                                          'Authorization': 'Token ' + token})
+        requests.put(url, data=file, headers={'Content-type': 'multipart/form-data; '
+                                                              'boundary=something ',
+                                              'Authorization': 'Token ' + token})
 
-        return HttpResponse(response2.content)
+        return redirect('/login/')
