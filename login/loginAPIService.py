@@ -12,7 +12,7 @@ def login_con(request):
     response = requests.post('https://recruitment.fisdev.com/api/login/', {'username': username, 'password': password})
     text = response.text
     obj = json.loads(text)
-#    print(obj['token'])
+
     if obj['success']:
         request.session['token'] = obj['token']
         return redirect('/recruitmentForm/')

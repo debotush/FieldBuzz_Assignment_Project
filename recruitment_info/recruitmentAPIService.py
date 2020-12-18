@@ -70,9 +70,7 @@ def recruitment_con(request):
         return redirect('/recruitmentForm/')
     else:
 
-        print("Upto 2nd API")
         file = request.FILES['cvFile']
-        print(file)
 
         file_token_id = str(obj['cv_file']['id'])
 
@@ -81,11 +79,5 @@ def recruitment_con(request):
         response2 = requests.put(url, data=file, headers={'Content-type': 'multipart/form-data; '
                                                                           'boundary=something ',
                                                           'Authorization': 'Token ' + token})
-
-        print('-------------------------------------------------------')
-        print('-------------------------------------------------------')
-        print('-------------------------------------------------------')
-        print(response2.status_code)
-        print(response2.content)
 
         return HttpResponse(response2.content)
