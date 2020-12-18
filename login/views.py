@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from login.loginController import login_con
+from login.loginAPIService import login_con
 from login.loginForm import LoginForm
 
 

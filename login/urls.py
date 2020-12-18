@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, loginController
+from . import views, loginAPIService
 
 urlpatterns = [
     path('', views.index)
