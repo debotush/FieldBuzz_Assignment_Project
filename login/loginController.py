@@ -15,7 +15,7 @@ def login_con(request):
 #    print(obj['token'])
     if obj['success']:
         request.session['token'] = obj['token']
-        return HttpResponse("login Done")
+        return redirect('/recruitmentForm/')
     else:
         messages.error(request, 'username or password not correct')
         return redirect('/login/')
