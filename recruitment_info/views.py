@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from recruitment_info.models import RecruitmentInfoModel
 from recruitment_info.recruitmentInfoForm import RecruitmentForm
 from recruitment_info.recruitmentController import recruitment_con
 
@@ -12,6 +14,8 @@ def recruitment_index(request):
         print(form.is_valid())
         if form.is_valid():
             print("Valid")
+            print(request.FILES['cvFile'])
+            file = request.FILES['cvFile']
             form.save()
             return recruitment_con(request)
 

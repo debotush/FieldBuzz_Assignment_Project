@@ -1,4 +1,3 @@
-import re
 import time
 import requests
 import uuid
@@ -7,7 +6,6 @@ import json
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from recruitment_info.recruitmentInfoForm import RecruitmentForm
 
 
 def recruitment_con(request):
@@ -27,7 +25,6 @@ def recruitment_con(request):
     cv_file = request.POST.get('cvFile', '')
 
     token = request.session.get('token')
-    headers = {'Authorization': 'Token ' + token}
 
     on_spot_update_time = 0
     if on_spot_update_time == 0:
@@ -60,9 +57,7 @@ def recruitment_con(request):
     response = requests.post('https://recruitment.fisdev.com/api/v0/recruiting-entities/',
                              data=json.dumps(payload),
                              headers={'Content-type': 'application/json; charset=UTF-8',
-                                      'Authorization': 'Token ' + token,
-                                      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ('
-                                                    'KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'})
+                                      'Authorization': 'Token ' + token})
 
     text = response.text
     obj = json.loads(text)
@@ -76,23 +71,16 @@ def recruitment_con(request):
     else:
 
         print("Upto 2nd API")
-        print(obj['cv_file'])
-        print(type(cv_file))
+        file = request.FILES['cvFile']
+        print(file)
+
         file_token_id = str(obj['cv_file']['id'])
-        obj['cv_file']['extension'] = 'null'
-        obj['cv_file']['description'] = 'null'
-        obj['cv_file']['file'] = cv_file
+
         url = 'https://recruitment.fisdev.com/api/file-object/' + file_token_id + '/'
-        payload2 = obj['cv_file']
-        response2 = requests.put(url, data=json.dumps(payload2), headers={'Content-type': 'application/json; '
-                                                                                          'charset=UTF-8',
-                                                                          'Authorization': 'Token ' + token,
-                                                                          'User-Agent': 'Mozilla/5.0 (Windows NT '
-                                                                                        '10.0; Win64; x64) '
-                                                                                        'AppleWebKit/537.36 ( '
-                                                                                        'KHTML, like Gecko) '
-                                                                                        'Chrome/87.0.4280.88 '
-                                                                                        'Safari/537.36'})
+
+        response2 = requests.put(url, data=file, headers={'Content-type': 'multipart/form-data; '
+                                                                          'boundary=something ',
+                                                          'Authorization': 'Token ' + token})
 
         print('-------------------------------------------------------')
         print('-------------------------------------------------------')
@@ -100,4 +88,4 @@ def recruitment_con(request):
         print(response2.status_code)
         print(response2.content)
 
-        return HttpResponse(response2.json())
+        return HttpResponse(response2.content)
