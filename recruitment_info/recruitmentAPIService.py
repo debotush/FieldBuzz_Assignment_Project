@@ -5,7 +5,7 @@ import json
 
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
 
 def recruitment_con(request):
@@ -22,7 +22,6 @@ def recruitment_con(request):
     expected_salary = request.POST.get('expectedSalary', '')
     field_buzz_reference = request.POST.get('fieldBuzzReference', '')
     github_project_url = request.POST.get('githubProjectUrl', '')
-    cv_file = request.POST.get('cvFile', '')
 
     token = request.session.get('token')
 
