@@ -1,0 +1,13 @@
+##############
+#System Files#
+##############
+
+.idea
+db.sqlite3
+venv/*
+
+##############
+## PDF file ##
+##############
+
+media/documents/*
