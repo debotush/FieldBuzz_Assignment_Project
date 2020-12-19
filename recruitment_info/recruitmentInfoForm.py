@@ -11,17 +11,17 @@ class RecruitmentForm(forms.ModelForm):
         labels = {
             'name': 'Name',
             'email': 'E-mail',
-            'phoneNumber': 'Phone number',
-            'fullAddress': 'Full-address',
-            'nameOfUniversity': 'Name of university',
-            'graduationYear': 'Graduation year',
+            'phoneNumber': 'Phone Number',
+            'fullAddress': 'Full Address',
+            'nameOfUniversity': 'Name of University',
+            'graduationYear': 'Graduation Year',
             'cgpa': 'CGPA',
             'experienceInMonths': 'Experience',
-            'currentWorkPlaceName': 'Current work place',
+            'currentWorkPlaceName': 'Current Work Place',
             'applyingIn': 'Applying',
-            'expectedSalary': 'Expected salary',
+            'expectedSalary': 'Expected Salary',
             'fieldBuzzReference': 'Reference',
-            'githubProjectUrl': 'Github project url',
+            'githubProjectUrl': 'Github Project URL',
             'cvFile': 'Upload CV'
         }
 
