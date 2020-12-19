@@ -52,7 +52,7 @@ def recruitment_con(request):
                "on_spot_update_time": on_spot_update_time,
                "on_spot_creation_time": on_spot_creation_time}
 
-    response = requests.post('https://recruitment.fisdev.com/api/v0/recruiting-entities/',
+    response = requests.post('https://recruitment.fisdev.com/api/v1/recruiting-entities/',
                              data=json.dumps(payload),
                              headers={'Content-type': 'application/json; charset=UTF-8',
                                       'Authorization': 'Token ' + token})
